@@ -131,7 +131,8 @@ D={a:[
 ['2026-10-31','m','~Bp Rony bulan September, Oktober 2026',80000],
 ['2026-11-08','m','~Pertemuan Rutin Bulan November 2026',940000],
 ['2026-11-08','k','Pembayaran Tagihan Listrik Perum GM Bulan November 2026',524234],
-['2026-11-09','m','~Bp Theo bulan Oktober, November 2026',80000]],
+['2026-11-09','m','~Bp Theo bulan Oktober, November 2026',80000],
+['2026-11-20','m','~Bu Maria bulan Oktober, November 2026',80000]],
 r:[
 ['2026-07-16','m','~Pertemuan Rutin Bulan Juli 2026',310000],
 ['2026-07-16','k','Konsumsi (Bu Uqi)',100000],
@@ -184,7 +185,7 @@ s:[
 ['2026-11-09','m','~Bp Theo bulan Oktober, November 2026',20000]]};
 var S,tab='ringkasan',kas='a',ym='2026-11';
 function seed(){var t=[],i=1;for(var k in D)D[k].forEach(function(x){t.push({id:i++,kas:k,tgl:x[0],j:x[1],ket:x[2].charAt(0)==='~'?P[k]+x[2].slice(1):x[2],amt:x[3]})});return{trx:t}}
-function load(){try{var r=localStorage.getItem(KEY);S=r?JSON.parse(r):null}catch(e){S=null}if(!S||!S.trx)S=seed();S.trx.forEach(function(x){if(x.kas==='a'&&x.j==='m'&&x.ket.indexOf('Uang Air')===0)x.j='u'})}
+function load(){try{var r=localStorage.getItem(KEY);S=r?JSON.parse(r):null}catch(e){S=null}if(!S||!S.trx)S=seed();S.trx.forEach(function(x){if(x.kas==='a'&&x.j==='m'&&x.ket.indexOf('Uang Air')===0)x.j='u'});if(!S.trx.some(function(x){return x.kas==='a'&&x.tgl==='2026-11-20'&&x.ket.indexOf('Bu Maria')>-1}))S.trx.push({id:S.trx.reduce(function(m,x){return Math.max(m,x.id)},0)+1,kas:'a',tgl:'2026-11-20',j:'m',ket:P.a+'Bu Maria bulan Oktober, November 2026',amt:80000})}
 function save(){try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}}
 function rp(n){return (n<0?'−':'')+'Rp'+Math.abs(Math.round(n)).toLocaleString('id-ID')}
 function esc(s){return String(s).replace(/[&<>"']/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
