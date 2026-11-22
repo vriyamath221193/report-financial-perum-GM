@@ -5,7 +5,7 @@
 <title>Keuangan Paguyuban Griya Mulya</title>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-:root{color-scheme:dark;--bg:#050b1a;--sf:#0b1630;--ink:#e8f1ff;--mute:#8aa0c4;--line:#1b2f5c;--pri:#1f8bff;--on:#03122e;--btnbg:linear-gradient(135deg,#2a7bff,#22d3ee);--bglow:0 0 18px rgba(34,211,238,.35);--in:#2de2e6;--out:#ff6f9c;--c1:#22d3ee;--c2:#3b82f6;--c3:#a78bfa;--sb:#030816;--hl:#0e1d3f;--tb:#7cc4ff;--tt:#0f3b8a;--sgl:10px;--psh:0 0 28px -10px rgba(34,211,238,.28);--tglow:0 0 22px rgba(34,211,238,.5);
+:root{color-scheme:dark;--bg:#050b1a;--sf:#0b1630;--ink:#e8f1ff;--mute:#8aa0c4;--line:#1b2f5c;--pri:#1f8bff;--on:#03122e;--btnbg:linear-gradient(135deg,#2a7bff,#22d3ee);--bglow:0 0 18px rgba(34,211,238,.35);--in:#2de2e6;--out:#ff6f9c;--c1:#22d3ee;--c2:#3b82f6;--c3:#a78bfa;--sb:#030816;--hl:#0e1d3f;--tb:#7cc4ff;--tt:linear-gradient(90deg,#123f99,#0f6bd0);--tbg:#0b1d47;--tbg2:#0e2656;--th:#14337a;--thc:#b3d0ff;--tsal:#12306f;--sgl:10px;--psh:0 0 28px -10px rgba(34,211,238,.28);--tglow:0 0 22px rgba(34,211,238,.5);
 --bgimg:radial-gradient(900px 520px at 88% -8%,rgba(34,211,238,.13),transparent 60%),radial-gradient(760px 520px at 0% 100%,rgba(59,130,246,.16),transparent 60%);
 box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
 html{scroll-padding-top:env(safe-area-inset-top,0px)}
@@ -43,13 +43,13 @@ button:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid 
 .tw{overflow-x:auto}
 table{border-collapse:separate;border-spacing:0;width:100%;min-width:640px}
 th,td{padding:12px 16px;border-bottom:1px solid var(--line);font-size:14px;text-align:left;vertical-align:top}
-th{font-size:12.5px;font-weight:600;color:var(--mute);background:var(--hl);white-space:nowrap;padding-top:13px;padding-bottom:13px}
+th{font-size:12.5px;font-weight:600;color:var(--thc);background:var(--th);white-space:nowrap;padding-top:13px;padding-bottom:13px}
 tbody tr:last-child td{border-bottom:0}tbody tr:not(.tt):not(.aw):hover td{background-image:linear-gradient(rgba(127,127,127,.1),rgba(127,127,127,.1))}
 .n{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}.in{color:var(--in)}.out{color:var(--out)}.b{font-weight:600}
-td,td.in,td.out{color:var(--tb)}td.in{background:color-mix(in srgb,var(--in) 7%,transparent)}td.out{background:color-mix(in srgb,var(--out) 7%,transparent)}td.b{background:var(--hl)}
+td,td.in,td.out{color:var(--tb)}
 td.dt{color:color-mix(in srgb,var(--tb) 75%,var(--sf));white-space:nowrap;font-variant-numeric:tabular-nums}
-th.in,th.out{color:var(--mute)}th.in{box-shadow:inset 0 -2px 0 var(--in)}th.out{box-shadow:inset 0 -2px 0 var(--out)}
-tr.tt td{font-weight:700;background:var(--tt);color:#fff;border-bottom:0}tr.aw td{background:var(--hl);color:var(--tb);font-weight:600}
+th.in,th.out{color:var(--thc)}th.in{box-shadow:inset 0 -2px 0 var(--in)}th.out{box-shadow:inset 0 -2px 0 var(--out)}
+tr.tt td{font-weight:700;background:var(--tt);color:#fff;border-bottom:0}tr.aw td{background:var(--tsal);color:var(--tb);font-weight:600}
 .chart{padding:18px 20px}
 .bars{display:flex;gap:10px;height:180px}
 .bc{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;height:100%;border:0;background:none;color:var(--mute);font-size:12px;font-weight:500;cursor:pointer;opacity:.55;padding:0}
@@ -78,8 +78,28 @@ dialog h2{margin:0}.fg{display:grid;grid-template-columns:1fr 1fr;gap:12px;margi
 @media (max-width:859px){.app{display:block}aside{position:static;width:auto;height:auto;padding:14px 16px;flex-direction:row;align-items:center}.foot{display:none}
 nav{position:fixed;left:0;right:0;bottom:0;z-index:20;flex-direction:row;background:var(--sb);padding:6px 10px calc(6px + env(safe-area-inset-bottom,0px));gap:6px}
 nav button{flex:1;flex-direction:column;align-items:center;gap:3px;font-size:12px;padding:8px}main{padding:20px 16px 100px}.fg{grid-template-columns:1fr}#toast{bottom:calc(84px + env(safe-area-inset-bottom,0px))}}
-@media print{aside,.act,.tabs,.noprint,#toast{display:none!important}.ph{display:block;margin-bottom:14px}body{background:#fff;color:#000}.app{display:block}main{padding:0}}
-@media print{:root{color-scheme:light;--bg:#fff;--sf:#fff;--ink:#000;--mute:#444;--line:#ccc;--hl:#f1f1f1;--tb:#0a2a6b;--in:#0a6b4a;--out:#b00020;--tt:#0a1f4d;--bgimg:none;--psh:none;--tglow:none;--sgl:0px}h1{text-shadow:none}}
+@media print{aside,.act,.tabs,.km,.noprint,#toast{display:none!important}.ph{display:block;margin-bottom:14px}body{background:#fff;color:#000}.app{display:block}main{padding:0}}
+.cw{overflow-x:auto}.cv{display:block;min-width:560px;width:100%;height:auto}.cv text{font-family:"Plus Jakarta Sans",sans-serif}
+.gl{stroke:var(--line);stroke-width:1;stroke-dasharray:3 5}.ax{fill:var(--mute);font-size:11px}.ax.on{fill:var(--ink);font-weight:700}.vl{fill:var(--ink);font-size:10px;font-weight:600}.sv{fill:var(--tb);font-size:10px}.sel{fill:var(--hl)}
+table{background:var(--tbg)}
+tbody tr:nth-child(even):not(.tt):not(.aw) td{background:var(--tbg2)}
+tbody tr:not(.tt):not(.aw) td.b{background:var(--tsal)}
+.pk th{vertical-align:middle}.pk .grp{text-align:center;box-shadow:inset 0 -1px 0 rgba(179,208,255,.25)}.pk thead th.sub2{font-weight:500}
+.pk td{padding-top:15px;padding-bottom:15px;vertical-align:middle}
+.cur{font-size:11px;opacity:.6;margin-right:4px;font-weight:500}.z{opacity:.45}
+.kb{display:inline-block;width:4px;height:22px;border-radius:2px;vertical-align:middle;margin-right:12px}.kn{font-weight:600;vertical-align:middle}
+.sa{font-weight:700;font-size:15px}.tk{height:4px;border-radius:2px;background:rgba(179,208,255,.14);margin-top:7px;overflow:hidden;min-width:110px}.tk i{display:block;height:100%;border-radius:2px}
+.km{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:16px}
+.kc{display:flex;flex-direction:column;gap:2px;text-align:left;padding:14px 16px 14px 20px;background:var(--sf);border:1px solid var(--line);border-radius:12px;color:var(--ink);cursor:pointer;position:relative;overflow:hidden;transition:border-color .15s,box-shadow .15s}
+.kc::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--kc);opacity:.5}
+.kc:hover{border-color:color-mix(in srgb,var(--kc) 55%,var(--line))}
+.kc[aria-selected=true]{border-color:var(--kc);background:linear-gradient(135deg,color-mix(in srgb,var(--kc) 16%,var(--sf)),var(--sf));box-shadow:0 0 22px -6px var(--kc)}
+.kc[aria-selected=true]::before{opacity:1}
+.kt{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:600;color:var(--mute)}.kc[aria-selected=true] .kt{color:var(--ink)}
+.kd{width:8px;height:8px;border-radius:50%;background:var(--kc);box-shadow:0 0 8px var(--kc)}
+.ks{font:700 21px "Bricolage Grotesque",sans-serif;font-variant-numeric:tabular-nums;letter-spacing:-.01em}.kl{font-size:12px;color:var(--mute)}
+@media (max-width:859px){.km{grid-template-columns:none;grid-auto-flow:column;grid-auto-columns:minmax(230px,80%);overflow-x:auto;padding-bottom:6px;scroll-snap-type:x mandatory}.kc{scroll-snap-align:start}}
+@media print{:root{color-scheme:light;--bg:#fff;--sf:#fff;--ink:#000;--mute:#444;--line:#ccc;--hl:#f1f1f1;--tb:#0a2a6b;--in:#0a6b4a;--out:#b00020;--tt:#0a1f4d;--tbg:#fff;--tbg2:#f6f6f6;--th:#e9e9e9;--thc:#333;--tsal:#efefef;--bgimg:none;--psh:none;--tglow:none;--sgl:0px}h1{text-shadow:none}}
 </style>
 </head>
 <body>
@@ -209,16 +229,43 @@ function viewRingkasan(){
  '<section class="panel hero"><p class="sub">Total saldo tiga kas</p><div class="big">'+rp(t.akhir)+'</div><p class="sub"><span class="b '+(d>=0?'in':'out')+'">'+(d>=0?'+':'')+rp(d)+'</span> dibanding awal bulan (pemasukan '+rp(t.mi)+(t.ua?', Uang Air '+rp(t.ua):'')+', pengeluaran '+rp(t.ko)+')</p>'+
  '<div class="seg" aria-hidden="true">'+K.map(function(k){return '<i style="flex:'+Math.max(st(k,ym).akhir,0)+';background:'+CL[k]+';box-shadow:0 0 var(--sgl) '+CL[k]+'"></i>'}).join('')+'</div>'+
  '<ul class="lg">'+K.map(function(k){var a=st(k,ym).akhir;return '<li><span class="dot" style="background:'+CL[k]+'"></span>'+NM[k]+' <b>'+rp(a)+'</b><span class="sub">'+Math.round(Math.max(a,0)/sum*100)+'%</span></li>'}).join('')+'</ul></section>'+
- '<h2>Posisi per kas</h2><div class="panel tw"><table><thead><tr><th>Kas</th><th class="n">Saldo awal</th><th class="n in">Pemasukan</th><th class="n in">Uang Air</th><th class="n out">Pengeluaran</th><th class="n">Saldo akhir</th></tr></thead><tbody>'+
- K.map(function(k){var s=st(k,ym);return '<tr><td><span class="dot" style="background:'+CL[k]+'"></span>'+NM[k]+'</td><td class="n">'+rp(s.awal)+'</td><td class="n in">'+rp(s.mi)+'</td><td class="n in">'+(s.ua?rp(s.ua):'–')+'</td><td class="n out">'+rp(s.ko)+'</td><td class="n b">'+rp(s.akhir)+'</td></tr>'}).join('')+
- '<tr class="tt"><td>Total</td><td class="n">'+rp(t.awal)+'</td><td class="n">'+rp(t.mi)+'</td><td class="n">'+(t.ua?rp(t.ua):'–')+'</td><td class="n">'+rp(t.ko)+'</td><td class="n">'+rp(t.akhir)+'</td></tr></tbody></table></div>'+
- '<h2 class="noprint">Pemasukan dan pengeluaran per bulan</h2><div class="panel chart noprint"><div class="bars">'+ms.map(function(m){var x=tot(m);return '<button class="bc'+(m===ym?' on':'')+'" data-m="'+m+'" aria-label="'+bl(m)+'"><span class="pair"><i class="bi" style="height:'+x.mi/mx*100+'%"></i><i class="bo" style="height:'+x.ko/mx*100+'%"></i></span>'+sm(m)+'<small>'+jt(x.akhir)+'</small></button>'}).join('')+'</div><div class="lgd"><span><i class="bi"></i>Pemasukan</span><span><i class="bo"></i>Pengeluaran</span><span class="sub">Angka di bawah bulan adalah saldo akhir. Uang Air tidak dihitung sebagai pemasukan.</span></div></div>'}
+ posisi(t)+
+ '<h2 class="noprint">Pemasukan dan pengeluaran per bulan</h2><div class="panel chart noprint">'+chart(ms)+'</div>'+rekap()}
+function lb(v){if(!v)return '0';if(v<1e6)return Math.round(v/1000)+' rb';return String(Math.round(v/1e4)/100).replace('.',',')+' jt'}
+function sg(n){return (n>0?'+':'')+rp(n)}
+function chart(ms){
+ var W=580,H=262,L=50,R=10,T=20,B=46,pw=W-L-R,ph=H-T-B,X=ms.map(function(m){return tot(m)}),mx=0,i;
+ X.forEach(function(x){mx=Math.max(mx,x.mi,x.ko)});
+ var stp=[250000,500000,1000000,2000000,5000000].filter(function(v){return mx/v<=5})[0]||5000000,top=Math.ceil(mx/stp)*stp||stp,n=top/stp,gw=pw/ms.length,bw=Math.min(30,gw*.3);
+ function y(v){return T+ph-v/top*ph}
+ function bar(x,v,g){return v?'<rect x="'+x+'" y="'+y(v)+'" width="'+bw+'" height="'+v/top*ph+'" rx="3" fill="url(#'+g+')"/><text class="vl" x="'+(x+bw/2)+'" y="'+(y(v)-5)+'" text-anchor="middle">'+lb(v)+'</text>':''}
+ var s='<div class="lgd" style="margin:0 0 8px"><span><i class="bi"></i>Pemasukan</span><span><i class="bo"></i>Pengeluaran</span><span class="sub">Bulan terpilih disorot. Angka kecil di bawah bulan adalah saldo akhir. Uang Air tidak dihitung sebagai pemasukan.</span></div><div class="cw"><svg class="cv" viewBox="0 0 '+W+' '+H+'" role="img" aria-label="Grafik pemasukan dan pengeluaran per bulan"><defs><linearGradient id="gi" x1="0" y1="0" x2="0" y2="1"><stop offset="0" style="stop-color:var(--in)"/><stop offset="1" style="stop-color:var(--in);stop-opacity:.35"/></linearGradient><linearGradient id="go" x1="0" y1="0" x2="0" y2="1"><stop offset="0" style="stop-color:var(--out)"/><stop offset="1" style="stop-color:var(--out);stop-opacity:.35"/></linearGradient></defs>';
+ for(i=0;i<=n;i++){var v=i*stp,yy=y(v);s+='<line class="gl" x1="'+L+'" x2="'+(W-R)+'" y1="'+yy+'" y2="'+yy+'"/><text class="ax" x="'+(L-8)+'" y="'+(yy+4)+'" text-anchor="end">'+lb(v)+'</text>'}
+ ms.forEach(function(m,i){var x=X[i],cx=L+gw*i+gw/2,on=m===ym;
+  s+='<g data-m="'+m+'" style="cursor:pointer">'+(on?'<rect class="sel" x="'+(cx-gw/2+4)+'" y="'+(T-4)+'" width="'+(gw-8)+'" height="'+(ph+B)+'" rx="8"/>':'<rect x="'+(cx-gw/2)+'" y="'+T+'" width="'+gw+'" height="'+(ph+B-4)+'" fill="transparent"/>')+bar(cx-bw-5,x.mi,'gi')+bar(cx+5,x.ko,'go')+'<text class="ax'+(on?' on':'')+'" x="'+cx+'" y="'+(H-24)+'" text-anchor="middle">'+sm(m)+'</text><text class="sv" x="'+cx+'" y="'+(H-8)+'" text-anchor="middle">'+lb(x.akhir)+'</text></g>'});
+ return s+'</svg></div>'}
+function rekap(){
+ var ms=months(),last=ms[ms.length-1],A={mi:0,ua:0,ko:0},fin=tot(last).akhir,aw=tot(ms[0]).awal,rows='',
+ th='<th class="n in">Pemasukan</th><th class="n in">Uang Air</th><th class="n out">Pengeluaran</th>';
+ ms.forEach(function(m){var x=tot(m);A.mi+=x.mi;A.ua+=x.ua;A.ko+=x.ko;rows+='<tr><td>'+bl(m)+'</td><td class="n">'+rp(x.mi)+'</td><td class="n">'+(x.ua?rp(x.ua):'–')+'</td><td class="n">'+rp(x.ko)+'</td><td class="n">'+sg(x.mi+x.ua-x.ko)+'</td><td class="n b">'+rp(x.akhir)+'</td></tr>'});
+ 
+ return '<h2>Rekap keseluruhan, '+bl(ms[0])+' sampai '+bl(last)+'</h2><div class="panel stats"><div><span>Saldo awal '+bl(ms[0])+'</span><b>'+rp(aw)+'</b></div><div><span>Total pemasukan</span><b class="in">'+rp(A.mi)+'</b></div><div><span>Uang Air</span><b class="in">'+rp(A.ua)+'</b></div><div><span>Total pengeluaran</span><b class="out">'+rp(A.ko)+'</b></div><div><span>Saldo akhir</span><b>'+rp(fin)+'</b></div></div>'+
+ '<div class="panel tw"><table><thead><tr><th>Bulan</th>'+th+'<th class="n">Selisih</th><th class="n">Saldo akhir</th></tr></thead><tbody>'+rows+'<tr class="tt"><td>Total</td><td class="n">'+rp(A.mi)+'</td><td class="n">'+rp(A.ua)+'</td><td class="n">'+rp(A.ko)+'</td><td class="n">'+sg(A.mi+A.ua-A.ko)+'</td><td class="n">'+rp(fin)+'</td></tr></tbody></table></div>'}
+function cur(n){return (n<0?'−':'')+'<span class="cur">Rp</span>'+Math.abs(Math.round(n)).toLocaleString('id-ID')}
+function nz(n){return n?cur(n):'<span class="z">–</span>'}
+function posisi(t){
+ var sum=Math.max(t.akhir,1);
+ return '<h2>Posisi per kas</h2><div class="panel tw"><table class="pk"><thead><tr><th rowspan="2">Kas</th><th rowspan="2" class="n">Saldo awal</th><th colspan="3" class="grp">Arus kas '+bl(ym)+'</th><th rowspan="2" class="n">Saldo akhir</th></tr><tr><th class="n in sub2">Pemasukan</th><th class="n in sub2">Uang Air</th><th class="n out sub2">Pengeluaran</th></tr></thead><tbody>'+
+ K.map(function(k){var s=st(k,ym),p=Math.round(Math.max(s.akhir,0)/sum*100);
+  return '<tr><td><span class="kb" style="background:'+CL[k]+';box-shadow:0 0 var(--sgl) '+CL[k]+'"></span><span class="kn">'+NM[k]+'</span></td><td class="n">'+cur(s.awal)+'</td><td class="n">'+nz(s.mi)+'</td><td class="n">'+nz(s.ua)+'</td><td class="n">'+nz(s.ko)+'</td><td class="n b"><div class="sa">'+cur(s.akhir)+'</div><div class="tk" title="'+p+'% dari total saldo"><i style="width:'+p+'%;background:'+CL[k]+'"></i></div></td></tr>'}).join('')+
+ '<tr class="tt"><td>Total</td><td class="n">'+cur(t.awal)+'</td><td class="n">'+nz(t.mi)+'</td><td class="n">'+nz(t.ua)+'</td><td class="n">'+nz(t.ko)+'</td><td class="n">'+cur(t.akhir)+'</td></tr></tbody></table></div>'}
+function kasmenu(){return '<div class="km" role="tablist">'+K.map(function(k){var s=st(k,ym);return '<button role="tab" class="kc" aria-selected="'+(k===kas)+'" data-kas="'+k+'" style="--kc:'+CL[k]+'"><span class="kt"><span class="kd"></span>'+NM[k]+'</span><span class="ks">'+rp(s.akhir)+'</span><span class="kl">Saldo akhir '+bl(ym)+'</span></button>'}).join('')+'</div>'}
 function viewBuku(){
  var U=kas==='a',s=st(kas,ym),run=s.awal,cs=U?6:5,
  rows=S.trx.filter(function(x){return x.kas===kas&&x.tgl.slice(0,7)===ym}).sort(function(a,b){return a.tgl<b.tgl?-1:a.tgl>b.tgl?1:a.id-b.id});
  return ph('Buku kas: '+NM[kas]+', '+bl(ym))+
  '<div class="head"><div><h1>Buku kas</h1><p class="sub">Catatan transaksi per kas dan bulan</p></div><div class="act">'+mnav()+'<button class="btn ghost" data-act="print">Cetak</button><button class="btn" data-act="add">+ Catat transaksi</button></div></div>'+
- '<div class="tabs" role="tablist">'+K.map(function(k){return '<button role="tab" aria-selected="'+(k===kas)+'" data-kas="'+k+'"><span class="dot" style="background:'+CL[k]+'"></span>'+NM[k]+'</button>'}).join('')+'</div>'+
+ kasmenu()+
  '<div class="panel stats"><div><span>Saldo awal</span><b>'+rp(s.awal)+'</b></div><div><span>Pemasukan</span><b class="in">'+rp(s.mi)+'</b></div>'+(U?'<div><span>Uang Air</span><b class="in">'+rp(s.ua)+'</b></div>':'')+'<div><span>Pengeluaran</span><b class="out">'+rp(s.ko)+'</b></div><div><span>Saldo akhir</span><b>'+rp(s.akhir)+'</b></div></div>'+
  '<div class="panel tw"><table><thead><tr><th>Tgl</th><th>Keterangan</th><th class="n in">Pemasukan</th>'+(U?'<th class="n in">Uang Air</th>':'')+'<th class="n out">Pengeluaran</th><th class="n">Saldo</th></tr></thead><tbody>'+
  '<tr class="aw"><td></td><td>Saldo awal '+bl(ym)+'</td><td></td>'+(U?'<td></td>':'')+'<td></td><td class="n">'+rp(s.awal)+'</td></tr>'+
@@ -233,7 +280,7 @@ function openDlg(){var d=document.getElementById('dlg'),td=new Date().toISOStrin
  fillJ();d.showModal()}
 function toast(m){var e=document.getElementById('toast');e.textContent=m;e.classList.add('show');clearTimeout(tmr);tmr=setTimeout(function(){e.classList.remove('show')},2200)}
 document.addEventListener('click',function(e){
- var t=e.target.closest('button');if(!t)return;var d=t.dataset;
+ var g=e.target.closest('g[data-m]');if(g){ym=g.getAttribute('data-m');render();return}var t=e.target.closest('button');if(!t)return;var d=t.dataset;
  if(d.tab){tab=d.tab;render();window.scrollTo(0,0);return}
  if(d.kas){kas=d.kas;render();return}
  if(d.m){ym=d.m;render();return}
