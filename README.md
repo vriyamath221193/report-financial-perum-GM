@@ -5,7 +5,7 @@
 <title>Keuangan Paguyuban Griya Mulya</title>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-:root{color-scheme:dark;--bg:#050b1a;--sf:#0b1630;--ink:#e8f1ff;--mute:#8aa0c4;--line:#1b2f5c;--pri:#1f8bff;--on:#03122e;--btnbg:linear-gradient(135deg,#2a7bff,#22d3ee);--bglow:0 0 18px rgba(34,211,238,.35);--in:#2de2e6;--out:#ff6f9c;--c1:#22d3ee;--c2:#3b82f6;--c3:#a78bfa;--sb:#030816;--hl:#0e1d3f;--tb:#7cc4ff;--tt:linear-gradient(90deg,#123f99,#0f6bd0);--tbg:#0b1d47;--tbg2:#0e2656;--th:#14337a;--thc:#b3d0ff;--tsal:#12306f;--sgl:10px;--psh:0 0 28px -10px rgba(34,211,238,.28);--tglow:0 0 22px rgba(34,211,238,.5);
+:root{color-scheme:dark;--bg:#050b1a;--sf:#0b1630;--ink:#e8f1ff;--mute:#8aa0c4;--line:#1b2f5c;--pri:#1f8bff;--on:#03122e;--btnbg:linear-gradient(135deg,#2a7bff,#22d3ee);--bglow:0 0 18px rgba(34,211,238,.35);--in:#2de2e6;--out:#ff6f9c;--c1:#22d3ee;--c2:#3b82f6;--c3:#a78bfa;--sb:#030816;--hl:#0e1d3f;--tb:#eef5ff;--tt:linear-gradient(90deg,#071b4a,#0a2d70);--tbg:#0e3478;--tbg2:#123f8f;--th:#1a50b3;--thc:#d6e6ff;--tsal:#0a2a66;--sgl:10px;--psh:0 0 28px -10px rgba(34,211,238,.28);--tglow:0 0 22px rgba(34,211,238,.5);
 --bgimg:radial-gradient(900px 520px at 88% -8%,rgba(34,211,238,.13),transparent 60%),radial-gradient(760px 520px at 0% 100%,rgba(59,130,246,.16),transparent 60%);
 box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
 html{scroll-padding-top:env(safe-area-inset-top,0px)}
@@ -44,7 +44,7 @@ button:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid 
 table{border-collapse:separate;border-spacing:0;width:100%;min-width:640px}
 th,td{padding:12px 16px;border-bottom:1px solid var(--line);font-size:14px;text-align:left;vertical-align:top}
 th{font-size:12.5px;font-weight:600;color:var(--thc);background:var(--th);white-space:nowrap;padding-top:13px;padding-bottom:13px}
-tbody tr:last-child td{border-bottom:0}tbody tr:not(.tt):not(.aw):hover td{background-image:linear-gradient(rgba(127,127,127,.1),rgba(127,127,127,.1))}
+tbody tr:last-child td{border-bottom:0}tbody tr:not(.tt):not(.aw):hover td{background-image:linear-gradient(rgba(255,255,255,.07),rgba(255,255,255,.07))}
 .n{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}.in{color:var(--in)}.out{color:var(--out)}.b{font-weight:600}
 td,td.in,td.out{color:var(--tb)}
 td.dt{color:color-mix(in srgb,var(--tb) 75%,var(--sf));white-space:nowrap;font-variant-numeric:tabular-nums}
@@ -99,6 +99,7 @@ tbody tr:not(.tt):not(.aw) td.b{background:var(--tsal)}
 .kd{width:8px;height:8px;border-radius:50%;background:var(--kc);box-shadow:0 0 8px var(--kc)}
 .ks{font:700 21px "Bricolage Grotesque",sans-serif;font-variant-numeric:tabular-nums;letter-spacing:-.01em}.kl{font-size:12px;color:var(--mute)}
 @media (max-width:859px){.km{grid-template-columns:none;grid-auto-flow:column;grid-auto-columns:minmax(230px,80%);overflow-x:auto;padding-bottom:6px;scroll-snap-type:x mandatory}.kc{scroll-snap-align:start}}
+th,td{border-bottom-color:rgba(190,215,255,.14)}
 @media print{:root{color-scheme:light;--bg:#fff;--sf:#fff;--ink:#000;--mute:#444;--line:#ccc;--hl:#f1f1f1;--tb:#0a2a6b;--in:#0a6b4a;--out:#b00020;--tt:#0a1f4d;--tbg:#fff;--tbg2:#f6f6f6;--th:#e9e9e9;--thc:#333;--tsal:#efefef;--bgimg:none;--psh:none;--tglow:none;--sgl:0px}h1{text-shadow:none}}
 </style>
 </head>
@@ -246,11 +247,11 @@ function chart(ms){
  return s+'</svg></div>'}
 function rekap(){
  var ms=months(),last=ms[ms.length-1],A={mi:0,ua:0,ko:0},fin=tot(last).akhir,aw=tot(ms[0]).awal,rows='',
- th='<th class="n in">Pemasukan</th><th class="n in">Uang Air</th><th class="n out">Pengeluaran</th>';
- ms.forEach(function(m){var x=tot(m);A.mi+=x.mi;A.ua+=x.ua;A.ko+=x.ko;rows+='<tr><td>'+bl(m)+'</td><td class="n">'+rp(x.mi)+'</td><td class="n">'+(x.ua?rp(x.ua):'–')+'</td><td class="n">'+rp(x.ko)+'</td><td class="n">'+sg(x.mi+x.ua-x.ko)+'</td><td class="n b">'+rp(x.akhir)+'</td></tr>'});
+ th='<th class="n in">Pemasukan</th><th class="n out">Pengeluaran</th>';
+ ms.forEach(function(m){var x=tot(m);A.mi+=x.mi;A.ua+=x.ua;A.ko+=x.ko;rows+='<tr><td>'+bl(m)+'</td><td class="n">'+rp(x.mi)+'</td><td class="n">'+rp(x.ko)+'</td><td class="n b">'+rp(x.akhir)+'</td></tr>'});
  
  return '<h2>Rekap keseluruhan, '+bl(ms[0])+' sampai '+bl(last)+'</h2><div class="panel stats"><div><span>Saldo awal '+bl(ms[0])+'</span><b>'+rp(aw)+'</b></div><div><span>Total pemasukan</span><b class="in">'+rp(A.mi)+'</b></div><div><span>Uang Air</span><b class="in">'+rp(A.ua)+'</b></div><div><span>Total pengeluaran</span><b class="out">'+rp(A.ko)+'</b></div><div><span>Saldo akhir</span><b>'+rp(fin)+'</b></div></div>'+
- '<div class="panel tw"><table><thead><tr><th>Bulan</th>'+th+'<th class="n">Selisih</th><th class="n">Saldo akhir</th></tr></thead><tbody>'+rows+'<tr class="tt"><td>Total</td><td class="n">'+rp(A.mi)+'</td><td class="n">'+rp(A.ua)+'</td><td class="n">'+rp(A.ko)+'</td><td class="n">'+sg(A.mi+A.ua-A.ko)+'</td><td class="n">'+rp(fin)+'</td></tr></tbody></table></div>'}
+ '<div class="panel tw"><table><thead><tr><th>Bulan</th>'+th+'<th class="n">Saldo akhir</th></tr></thead><tbody>'+rows+'<tr class="tt"><td>Total</td><td class="n">'+rp(A.mi)+'</td><td class="n">'+rp(A.ko)+'</td><td class="n">'+rp(fin)+'</td></tr></tbody></table></div>'}
 function cur(n){return (n<0?'−':'')+'<span class="cur">Rp</span>'+Math.abs(Math.round(n)).toLocaleString('id-ID')}
 function nz(n){return n?cur(n):'<span class="z">–</span>'}
 function posisi(t){
