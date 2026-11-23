@@ -132,6 +132,13 @@ h2{display:flex;align-items:center;gap:9px}h2::before{content:"";width:4px;heigh
 .tt1{font:700 20px "Bricolage Grotesque",sans-serif}.total p{margin:4px 0 0;opacity:.9;font-size:13px}
 .pill{background:#fff;color:#123d9f;font:700 clamp(20px,5vw,30px) "Bricolage Grotesque",sans-serif;padding:10px 22px;border-radius:99px}
 @media (max-width:640px){.k4{grid-template-columns:repeat(2,1fr);gap:8px}.total{padding:16px}.tt1{font-size:17px}.note{padding:12px}}
+.ls{display:none}.kh{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:4px 12px;margin:22px 0 8px}.kt2{display:flex;align-items:center;gap:9px;font:700 17px "Bricolage Grotesque",sans-serif}.kt2 i{width:12px;height:12px;border-radius:4px;background:var(--kc)}.ks2{font-size:13px;color:var(--mute)}.pb:disabled{cursor:default;opacity:.85}@media (max-width:640px){.pre{display:block;width:max-content;margin-top:2px;font-size:10px;padding:1px 7px}}.na{color:var(--mute);opacity:.55}
+.pg{padding:14px 18px;margin-bottom:14px}.pgh{display:flex;justify-content:space-between;font-size:14px;margin-bottom:8px}.pbar{height:10px;border-radius:5px;background:#dbe6fb;overflow:hidden}.pbar i{display:block;height:100%;border-radius:5px;background:linear-gradient(90deg,#1d5fd6,#17a05d)}
+.pm th.pc,.pm td.pc{text-align:center;padding-left:4px;padding-right:4px}.pm td.pc{white-space:nowrap}
+.pb{width:26px;height:26px;border-radius:7px;border:1.5px solid #b9c9e6;background:#fff;color:#fff;font-size:14px;font-weight:700;line-height:1;padding:0;cursor:pointer}.pb.on{background:var(--pri);border-color:var(--pri)}
+tbody tr:nth-child(n):not(.tt):not(.aw) td.cm{background:var(--hl)}th.cm{background:color-mix(in srgb,var(--th) 72%,#000)}
+@media (max-width:859px){.lf{display:none}.ls{display:inline}}
+@media (max-width:640px){.hm{display:none}.pb{width:22px;height:22px;font-size:12px}.pm th.pc,.pm td.pc{padding-left:2px;padding-right:2px}}
 @media print{:root{color-scheme:light;--bg:#fff;--sf:#fff;--ink:#000;--mute:#444;--line:#ccc;--hl:#f1f1f1;--tb:#0a2a6b;--in:#0a6b4a;--out:#b00020;--tt:#0a1f4d;--tbg:#fff;--tbg2:#f6f6f6;--th:#e9e9e9;--thc:#333;--tsal:#efefef;--bgimg:none;--psh:none;--tglow:none;--sgl:0px}h1{text-shadow:none}}
 </style>
 </head>
@@ -238,7 +245,7 @@ s:[
 ['2026-11-09','m','~Bp Theo bulan Oktober, November 2026',20000]]};
 var S,tab='ringkasan',kas='a',ym='2026-11';
 function seed(){var t=[],i=1;for(var k in D)D[k].forEach(function(x){t.push({id:i++,kas:k,tgl:x[0],j:x[1],ket:x[2].charAt(0)==='~'?P[k]+x[2].slice(1):x[2],amt:x[3]})});return{trx:t}}
-function load(){try{var r=localStorage.getItem(KEY);S=r?JSON.parse(r):null}catch(e){S=null}if(!S||!S.trx)S=seed();S.trx.forEach(function(x){if(x.kas==='a'&&x.j==='m'&&x.ket.indexOf('Uang Air')===0)x.j='u'});if(!S.trx.some(function(x){return x.kas==='a'&&x.tgl==='2026-11-20'&&x.ket.indexOf('Bu Maria')>-1}))S.trx.push({id:S.trx.reduce(function(m,x){return Math.max(m,x.id)},0)+1,kas:'a',tgl:'2026-11-20',j:'m',ket:P.a+'Bu Maria bulan Oktober, November 2026',amt:80000})}
+function load(){try{var r=localStorage.getItem(KEY);S=r?JSON.parse(r):null}catch(e){S=null}if(!S||!S.trx)S=seed();S.trx.forEach(function(x){if(x.kas==='a'&&x.j==='m'&&x.ket.indexOf('Uang Air')===0)x.j='u'});if(!S.trx.some(function(x){return x.kas==='a'&&x.tgl==='2026-11-20'&&x.ket.indexOf('Bu Maria')>-1}))S.trx.push({id:S.trx.reduce(function(m,x){return Math.max(m,x.id)},0)+1,kas:'a',tgl:'2026-11-20',j:'m',ket:P.a+'Bu Maria bulan Oktober, November 2026',amt:80000});payMig();}
 function save(){try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}}
 function rp(n){return (n<0?'−':'')+'Rp'+Math.abs(Math.round(n)).toLocaleString('id-ID')}
 function esc(s){return String(s).replace(/[&<>"']/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
@@ -309,6 +316,52 @@ function viewIuran(){
  '<div class="panel tw"><table><thead><tr><th>No</th><th>Nama warga</th><th>Ket.</th><th class="n">Tagihan</th></tr></thead><tbody id="ib">'+r.h+'</tbody></table></div><p class="sub noprint" id="ic" style="margin:8px 2px 0">Menampilkan '+r.n+' dari '+IW.length+' warga</p>'+
  '<div class="note"><span class="ni">i</span><div><p><b>* Catatan:</b> Bp. Maryono dihitung 2x iuran Air (Rp80.000) ditambah 1x iuran Kas RT dan 17’an (Rp20.000).</p><p><b>** Catatan:</b> Bp. Rahmanto iuran Air dihitung Rp20.000 ditambah 1x iuran Kas RT dan 17’an (Rp20.000).</p></div></div>'+
  '<div class="total"><div><div class="tt1">Total estimasi pemasukan per bulan</div><p>Rekapitulasi iuran seluruh warga ('+IW.length+' KK) Perum Griya Mulya</p></div><div class="pill">'+rp(tot)+'</div></div>'}
+var PMS=['2026-07','2026-08','2026-09','2026-10','2026-11','2026-12'],PM='2026-11';
+IC.bayar=SV+'<rect x="3" y="6" width="18" height="13" rx="2.5"/><path d="M3 10h18"/><circle cx="16.5" cy="14.5" r="1.2"/></svg>';
+var PRE={'Bu Ina':'2027-07'},IS={'Bu Maria':{a:'2026-09'},'Bu Wati':{a:'2026-08',k:'2026-10'}},KL={a:'Kas Air',r:'Kas RT',s:'Kas 17’an'},SL={a:'Air',r:'RT',s:'17’an'},KC={a:'var(--c1)',r:'var(--c2)',s:'var(--c3)'},KH={a:'#1b56c9',r:'#b9383c',s:'#12804f'},QS3=['a','r','s'];
+function pre(w,m){return !!PRE[w[0]]&&m<=PRE[w[0]]}
+function cmp(w,m){var t=w[2],a=w[1]==='AK'?t-20000:w[1]==='A'?t:0,k=w[1]==='AK'?20000:w[1]==='K'?t:0,s=IS[w[0]]||{};if(s.a&&m<s.a)a=0;if(s.k&&m<s.k)k=0;return {a:a,r:k/2,s:k/2}}
+function tgb(w,m){var c=cmp(w,m);return c.a+c.r+c.s}
+function pdk(i,w,m,q){return !!(S.pay&&S.pay[i+'|'+m+'|'+q])||pre(w,m)}
+var UP={'Bp. Aris':['2026-11'],'Bp. Anggar':['2026-11'],'Bp. Rony':['2026-11'],'Bp. Rudi':['2026-10','2026-11'],'Bp. Wahab':['2026-11'],'Bu Heni':['2026-11'],'Bp. Hartono':['2026-07','2026-08','2026-09','2026-10','2026-11'],'Bu Wati':['2026-11']};
+function initPay(){var P={};IW.forEach(function(w,i){PMS.slice(0,5).forEach(function(m){var c=cmp(w,m);QS3.forEach(function(q){if(c[q]>0&&(UP[w[0]]||[]).indexOf(m)<0)P[i+'|'+m+'|'+q]=1})})});return P}
+function payMig(){if(S.payv===2)return;if(S.payv===1){var P=S.pay||{},N={};Object.keys(P).forEach(function(k){var a=k.split('|'),w=IW[+a[0]];if(!w)return;if(a.length===3){N[k]=1;return}var c=cmp(w,a[1]);QS3.forEach(function(q){if(c[q]>0)N[k+'|'+q]=1})});S.pay=N}else S.pay=initPay();S.payv=2}
+function rng(ms){var ix=ms.map(function(m){return PMS.indexOf(m)}),runs=[],s0=0,i,nm=function(m){return BL[+m.slice(5)-1]};for(i=1;i<=ix.length;i++){if(i===ix.length||ix[i]!==ix[i-1]+1){runs.push(ms.slice(s0,i));s0=i}}return runs.map(function(r){return r.length>2?nm(r[0])+'–'+nm(r[r.length-1]):r.map(nm).join(', ')}).join(', ')}
+function belumLunas(){
+ var now=new Date().toISOString().slice(0,7),ds=PMS.filter(function(m){return m<=now}),rows=[],tot=0;if(!ds.length)ds=[PMS[0]];
+ IW.forEach(function(w,i){var ms=[],qs={},a=0;ds.forEach(function(m){var c=cmp(w,m),u=0;QS3.forEach(function(q){if(c[q]>0&&!pdk(i,w,m,q)){u+=c[q];qs[q]=1}});if(u>0){ms.push(m);a+=u}});
+  if(ms.length){tot+=a;rows.push('<tr><td class="dt hm">'+(i+1)+'</td><td>'+esc(w[0])+'</td><td>'+QS3.filter(function(q){return qs[q]}).map(function(q){return SL[q]}).join(', ')+'</td><td>'+rng(ms)+'</td><td class="n b">'+cur(a)+'</td></tr>')}});
+ return '<h2>Pembayaran yang belum lunas</h2>'+(rows.length?'<div class="panel tw"><table><thead><tr><th class="hm">No</th><th>Nama warga</th><th>Pos kas</th><th>Bulan belum dibayar</th><th class="n">Tunggakan</th></tr></thead><tbody>'+rows.join('')+'<tr class="tt"><td class="hm"></td><td>Total ('+rows.length+' warga)</td><td></td><td></td><td class="n">'+cur(tot)+'</td></tr></tbody></table></div>':'<div class="panel empty">Semua warga sudah lunas sampai '+bl(ds[ds.length-1])+'.</div>')}
+function kasTable(q){
+ var rs=[],sm2=PMS.map(function(){return [0,0,0,0]}),px=PMS.indexOf(PM),html;
+ IW.forEach(function(w,i){if(PMS.some(function(m){return cmp(w,m)[q]>0}))rs.push([i,w])});
+ html=rs.map(function(x){var i=x[0],w=x[1],mx=0;PMS.forEach(function(m){mx=Math.max(mx,cmp(w,m)[q])});
+  return '<tr><td class="dt hm">'+(i+1)+'</td><td>'+esc(w[0])+(PRE[w[0]]&&q==='a'?' <span class="bd bd-AK pre">Lunas s.d. '+bl(PRE[w[0]])+'</span>':'')+'</td><td class="n hm">'+cur(mx)+'</td>'+PMS.map(function(m,j){var v=cmp(w,m)[q],c=m===PM?' cm':'';
+   if(!(v>0))return '<td class="pc'+c+'"><span class="na" title="Belum ditagihkan">–</span></td>';
+   var on=pdk(i,w,m,q);sm2[j][2]++;sm2[j][0]+=v;if(on){sm2[j][1]+=v;sm2[j][3]++}
+   if(pre(w,m))return '<td class="pc'+c+'"><button class="pb on" disabled title="Dibayar di muka sampai '+bl(PRE[w[0]])+'" aria-label="'+esc(w[0])+', '+bl(m)+', dibayar di muka">✓</button></td>';
+   return '<td class="pc'+c+'"><button class="pb'+(on?' on':'')+'" data-p="'+i+'|'+m+'|'+q+'" aria-pressed="'+on+'" aria-label="'+esc(KL[q])+', '+esc(w[0])+', '+bl(m)+'">'+(on?'✓':'')+'</button></td>'}).join('')+'</tr>'}).join('');
+ var tp=sm2[px][0],gp=sm2[px][1],pc=tp?Math.round(gp/tp*100):0;
+ return '<div class="kh" style="--kc:'+KC[q]+'"><span class="kt2"><i></i>'+KL[q]+'</span><span class="ks2">'+bl(PM)+': '+rp(gp)+' dari '+rp(tp)+' ('+pc+'%)</span></div>'+
+ '<div class="panel tw"><table class="pm" style="--th:'+KH[q]+';--tt:linear-gradient(90deg,color-mix(in srgb,'+KH[q]+' 60%,#000),'+KH[q]+');--hl:color-mix(in srgb,'+KH[q]+' 12%,#fff)"><thead><tr><th class="hm">No</th><th>Nama warga</th><th class="n hm">Iuran</th>'+PMS.map(function(m){return '<th class="pc'+(m===PM?' cm':'')+'">'+sm(m)+'</th>'}).join('')+'</tr></thead><tbody>'+html+
+ '<tr class="tt"><td class="hm"></td><td>Terkumpul</td><td class="hm"></td>'+sm2.map(function(x){return '<td class="pc">'+lb(x[1])+'</td>'}).join('')+'</tr>'+
+ '<tr class="tt"><td class="hm"></td><td>Warga lunas</td><td class="hm"></td>'+sm2.map(function(x){return '<td class="pc">'+x[3]+'/'+x[2]+'</td>'}).join('')+'</tr></tbody></table></div>'}
+function viewBayar(){
+ var tg=0,got=0,lun=0,nb=0;
+ IW.forEach(function(w,i){var t=tgb(w,PM);if(t>0){var c=cmp(w,PM),u=0;nb++;QS3.forEach(function(q){if(c[q]>0&&!pdk(i,w,PM,q))u+=c[q]});tg+=t;got+=t-u;if(!u)lun++}});
+ var pct=tg?Math.round(got/tg*100):0,
+ tl=[['Target '+bl(PM).split(' ')[0],rp(tg),nb+' KK','var(--c1)'],['Terkumpul',rp(got),pct+'% dari target','var(--c3)'],['Belum terkumpul',rp(tg-got),(nb-lun)+' warga belum lunas','var(--c2)'],['Warga lunas',lun+' dari '+nb,'bulan '+bl(PM),'#123d9f']];
+ return ph('Pembayaran iuran warga, '+bl(PM))+
+ '<div class="head"><div><h1>Pembayaran Iuran Warga</h1><p class="sub">Klik kotak pada bulan yang sudah dibayar, per pos kas</p></div><div class="act"><button class="btn ghost" data-act="print">Cetak</button></div></div>'+
+ '<div class="chips noprint" style="margin-bottom:14px">'+PMS.map(function(m){return '<button class="chip" data-pm="'+m+'" aria-pressed="'+(m===PM)+'">'+BL[+m.slice(5)-1]+'</button>'}).join('')+'</div>'+
+ '<div class="k4">'+tl.map(function(t){return '<div class="tl" style="--kc:'+t[3]+'"><span class="tn"><i></i>'+t[0]+'</span><b>'+t[1]+'</b><span class="tp">'+t[2]+'</span></div>'}).join('')+'</div>'+
+ '<div class="panel pg"><div class="pgh"><b>Progres pembayaran '+bl(PM)+'</b><span>'+pct+'%</span></div><div class="pbar"><i style="width:'+pct+'%"></i></div></div>'+
+ belumLunas()+'<h2>Status pembayaran per pos kas</h2>'+QS3.map(kasTable).join('')+
+ '<div class="note"><span class="ni">i</span><div><p>Menu ini hanya mencatat status pembayaran tiap warga. Uang yang diterima tetap dicatat di Buku kas supaya saldo kas ikut berubah.</p><p><b>Pembagian iuran:</b> Kas Air Rp40.000, Kas RT Rp10.000, dan Kas 17’an Rp10.000 per KK per bulan. Warga yang hanya membayar Kas dibagi sama rata ke Kas RT dan Kas 17’an.</p><p><b>Mulai membayar:</b> Bu Maria sejak September 2026. Bu Wati iuran Air sejak Agustus 2026, dan iuran Kas RT dan 17’an sejak Oktober 2026. Bulan sebelumnya tidak ditagihkan (tanda –).</p><p><b>Dibayar di muka:</b> Bu Ina lunas sampai Juli 2027, jadi kotaknya terkunci dan sudah tercentang.</p></div></div>'}
+document.addEventListener('click',function(e){var b=e.target.closest('button[data-p],button[data-pm]');if(!b)return;
+ if(b.dataset.pm){PM=b.dataset.pm;render();return}
+ var P=S.pay=S.pay||{},k=b.dataset.p,a=k.split('|');if(P[k])delete P[k];else P[k]=1;
+ save();render();toast(IW[+a[0]][0].replace(/\*+$/,'')+' ('+KL[a[2]]+')'+(P[k]?' lunas, ':' dibatalkan, ')+bl(a[1]))});
 function viewBuku(){
  var U=kas==='a',s=st(kas,ym),run=s.awal,cs=U?6:5,
  rows=S.trx.filter(function(x){return x.kas===kas&&x.tgl.slice(0,7)===ym}).sort(function(a,b){return a.tgl<b.tgl?-1:a.tgl>b.tgl?1:a.id-b.id});
@@ -321,8 +374,8 @@ function viewBuku(){
  (rows.length?rows.map(function(x){run+=x.j==='k'?-x.amt:x.amt;return '<tr><td class="dt">'+x.tgl.slice(8)+'/'+x.tgl.slice(5,7)+'</td><td>'+esc(x.ket)+'</td><td class="n in">'+(x.j==='m'?cur(x.amt):'')+'</td>'+(U?'<td class="n in">'+(x.j==='u'?cur(x.amt):'')+'</td>':'')+'<td class="n out">'+(x.j==='k'?cur(x.amt):'')+'</td><td class="n b">'+cur(run)+'</td></tr>'}).join(''):'<tr><td colspan="'+cs+'" class="empty">Belum ada transaksi di '+bl(ym)+'. Klik “Catat transaksi” untuk menambah.</td></tr>')+
  '<tr class="tt"><td></td><td>Total '+NM[kas]+'</td><td class="n">'+cur(s.mi)+'</td>'+(U?'<td class="n">'+cur(s.ua)+'</td>':'')+'<td class="n">'+cur(s.ko)+'</td><td class="n">'+cur(s.akhir)+'</td></tr></tbody></table></div>'}
 function render(){
- document.getElementById('nav').innerHTML=[['ringkasan','Ringkasan'],['buku','Buku kas'],['iuran','Iuran warga']].map(function(t){return '<button role="tab" aria-selected="'+(t[0]===tab)+'" data-tab="'+t[0]+'">'+IC[t[0]]+t[1]+'</button>'}).join('');
- document.getElementById('app').innerHTML=tab==='ringkasan'?viewRingkasan():tab==='iuran'?viewIuran():viewBuku()}
+ document.getElementById('nav').innerHTML=[['ringkasan','Ringkasan'],['buku','Buku kas'],['iuran','Iuran warga'],['bayar','<span class="lf">Pembayaran Iuran Warga</span><span class="ls">Pembayaran</span>']].map(function(t){return '<button role="tab" aria-selected="'+(t[0]===tab)+'" data-tab="'+t[0]+'">'+IC[t[0]]+t[1]+'</button>'}).join('');
+ document.getElementById('app').innerHTML=tab==='ringkasan'?viewRingkasan():tab==='iuran'?viewIuran():tab==='bayar'?viewBayar():viewBuku()}
 function fillJ(){var k=document.getElementById('fk').value;document.getElementById('fj').innerHTML='<option value="m">Pemasukan</option>'+(k==='a'?'<option value="u">Uang Air (tidak dihitung pemasukan)</option>':'')+'<option value="k">Pengeluaran</option>'}
 function openDlg(){var d=document.getElementById('dlg'),td=new Date().toISOString().slice(0,10);if(td.slice(0,7)!==ym)td=ym+'-01';
  d.innerHTML='<h2>Catat transaksi</h2><div class="fg"><label>Kas<select id="fk">'+K.map(function(k){return '<option value="'+k+'"'+(k===kas?' selected':'')+'>'+NM[k]+'</option>'}).join('')+'</select></label><label>Jenis<select id="fj"></select></label><label>Tanggal<input id="ft" type="date" min="2026-07-01" value="'+td+'"></label><label>Jumlah (Rp)<input id="fn" type="number" min="0" step="1000" inputmode="numeric"><small id="fh"></small></label><label class="w">Keterangan<input id="fe" placeholder="Contoh: Iuran Kas Air Bp Budi bulan November 2026"></label></div><div class="da"><button class="btn ghost" data-act="cancel">Batal</button><button class="btn" data-act="save">Simpan transaksi</button></div>';
@@ -338,7 +391,7 @@ document.addEventListener('click',function(e){
  if(d.act==='print'){window.print();return}
  if(d.act==='add'){openDlg();return}
  if(d.act==='cancel'){document.getElementById('dlg').close();return}
- if(d.act==='reset'){if(confirm('Semua perubahan akan diganti dengan data laporan awal. Lanjutkan?')){S=seed();save();render();toast('Data laporan dipulihkan')}return}
+ if(d.act==='reset'){if(confirm('Semua perubahan akan diganti dengan data laporan awal. Lanjutkan?')){var pp=S.pay,pv=S.payv;S=seed();S.pay=pp;S.payv=pv;save();render();toast('Data laporan dipulihkan')}return}
  if(d.act==='save'){var n=+document.getElementById('fn').value,ke=document.getElementById('fe').value.trim(),tg=document.getElementById('ft').value,k=document.getElementById('fk').value;
   if(!(n>0)||!ke||!tg||tg<'2026-07-01'){alert('Isi tanggal (mulai Juli 2026), keterangan, dan jumlah lebih dari 0.');return}
   S.trx.push({id:S.trx.reduce(function(m,x){return Math.max(m,x.id)},0)+1,kas:k,tgl:tg,j:document.getElementById('fj').value,ket:ke,amt:n});
