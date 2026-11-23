@@ -119,6 +119,19 @@ h2{display:flex;align-items:center;gap:9px}h2::before{content:"";width:4px;heigh
 .tl b{display:block;font:700 clamp(12px,3.4vw,20px) "Bricolage Grotesque",sans-serif;font-variant-numeric:tabular-nums;margin:4px 0 2px}.tp{font-size:12px;color:var(--mute)}
 .seg{height:14px}
 @media (max-width:640px){.k3{gap:8px}.tl{padding:9px 7px 9px 12px}.tn{font-size:10px;gap:5px}.tn i{width:7px;height:7px}.tp{font-size:10px}.tl b{font-size:clamp(11px,3.3vw,16px)}}
+.k4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:16px}
+.fbar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:12px}.fbar input{flex:1;min-width:180px;max-width:320px}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{border:1px solid var(--line);background:var(--sf);color:var(--mute);border-radius:99px;padding:6px 12px;font-size:13px;font-weight:500;cursor:pointer}
+.chip[aria-pressed=true]{background:var(--pri);border-color:var(--pri);color:#fff}
+.bd{display:inline-block;padding:2px 10px;border-radius:99px;font-size:12px;font-weight:600;white-space:nowrap}
+.bd-AK{background:#e0ebff;color:#123d9f}.bd-A{background:#dff3fb;color:#0a6f8a}.bd-K{background:#e0f5ea;color:#0e7a47}
+.note{display:flex;gap:12px;align-items:flex-start;margin-top:14px;padding:14px 16px;border-radius:12px;background:var(--hl);border:1px solid var(--line);font-size:13px}.note p{margin:0 0 4px}
+.ni{flex:none;width:24px;height:24px;border-radius:50%;background:var(--pri);color:#fff;font:italic 700 14px serif;display:grid;place-items:center}
+.total{display:flex;flex-wrap:wrap;gap:14px;align-items:center;justify-content:space-between;margin-top:18px;padding:20px 24px;border-radius:14px;background:linear-gradient(135deg,#123d9f,#1d5fd6);color:#fff}
+.tt1{font:700 20px "Bricolage Grotesque",sans-serif}.total p{margin:4px 0 0;opacity:.9;font-size:13px}
+.pill{background:#fff;color:#123d9f;font:700 clamp(20px,5vw,30px) "Bricolage Grotesque",sans-serif;padding:10px 22px;border-radius:99px}
+@media (max-width:640px){.k4{grid-template-columns:repeat(2,1fr);gap:8px}.total{padding:16px}.tt1{font-size:17px}.note{padding:12px}}
 @media print{:root{color-scheme:light;--bg:#fff;--sf:#fff;--ink:#000;--mute:#444;--line:#ccc;--hl:#f1f1f1;--tb:#0a2a6b;--in:#0a6b4a;--out:#b00020;--tt:#0a1f4d;--tbg:#fff;--tbg2:#f6f6f6;--th:#e9e9e9;--thc:#333;--tsal:#efefef;--bgimg:none;--psh:none;--tglow:none;--sgl:0px}h1{text-shadow:none}}
 </style>
 </head>
@@ -281,6 +294,21 @@ function posisi(t){
   return '<tr><td><span class="kb" style="background:'+CL[k]+';box-shadow:0 0 var(--sgl) '+CL[k]+'"></span><span class="kn">'+NM[k]+'</span></td><td class="n">'+cur(s.awal)+'</td><td class="n">'+nz(s.mi)+'</td><td class="n">'+nz(s.ua)+'</td><td class="n">'+nz(s.ko)+'</td><td class="n b"><div class="sa">'+cur(s.akhir)+'</div><div class="tk" title="'+p+'% dari total saldo"><i style="width:'+p+'%;background:'+CL[k]+'"></i></div></td></tr>'}).join('')+
  '<tr class="tt"><td>Total</td><td class="n">'+cur(t.awal)+'</td><td class="n">'+nz(t.mi)+'</td><td class="n">'+nz(t.ua)+'</td><td class="n">'+nz(t.ko)+'</td><td class="n">'+cur(t.akhir)+'</td></tr></tbody></table></div>'}
 function kasmenu(){return '<div class="km" role="tablist">'+K.map(function(k){var s=st(k,ym);return '<button role="tab" class="kc" aria-selected="'+(k===kas)+'" data-kas="'+k+'" style="--kc:'+CL[k]+'"><span class="kt"><span class="kd"></span>'+NM[k]+'</span><span class="ks">'+rp(s.akhir)+'</span><span class="kl">Saldo akhir '+bl(ym)+'</span></button>'}).join('')+'</div>'}
+var IW=[['Bp. Arif','AK',60000],['Bp. Aris','AK',60000],['Bp. Angger','AK',60000],['Bp. Rony','AK',60000],['Bp. Baktiar','AK',60000],['Bp. Dwi Purwanto','AK',60000],['Bp. Diki','AK',60000],['Bp. Edi','AK',60000],['Bp. Vriya','AK',60000],['Bp. Febri','AK',60000],['Bp. Joko Suseno','AK',60000],['Bp. Joko Tri','AK',60000],['Bp. Kandar','AK',60000],['Bp. Lukas','AK',60000],['Bp. Maryono (2x)*','AK',100000],['Bp. Niko','AK',60000],['Bp. Rahmanto**','AK',40000],['Bp. Sarwi','AK',60000],
+['Bp. Sudiyono','AK',60000],['Bp. Sutrisna','AK',60000],['Bp. Tito','AK',60000],['Bp. Tri','AK',60000],['Bp. Theo','AK',60000],['Bp. Wawan','AK',60000],['Bp. Widodo','AK',60000],['Bp. Wahab','K',20000],['Bp. Rudi','K',20000],['Bu Ina','A',40000],['Bu Heni','A',40000],['Bu Sri','A',40000],['Bp. Hartono','K',20000],['Bp. Sugeng','K',20000],['Bp. Farhan','AK',60000],['Bu Maria','A',40000],['Bu Wati','AK',60000]],
+KN={AK:'Air + Kas',A:'Air',K:'Kas'},QS='',FK='all';
+IC.iuran=SV+'<circle cx="9" cy="8" r="3.2"/><path d="M3 20a6 6 0 0 1 12 0"/><circle cx="17" cy="9" r="2.5"/><path d="M16 14.2a5 5 0 0 1 5 4.8"/></svg>';
+function iuranRows(){var q=QS.trim().toLowerCase(),n=0,h=IW.map(function(w,i){return [i+1,w]}).filter(function(x){return (FK==='all'||x[1][1]===FK)&&(!q||x[1][0].toLowerCase().indexOf(q)>-1)}).map(function(x){var w=x[1];n++;return '<tr><td class="dt">'+x[0]+'</td><td>'+esc(w[0])+'</td><td><span class="bd bd-'+w[1]+'">'+KN[w[1]]+'</span></td><td class="n b">'+cur(w[2])+'</td></tr>'}).join('');return {h:h||'<tr><td colspan="4" class="empty">Tidak ada warga yang cocok.</td></tr>',n:n}}
+function viewIuran(){
+ var tot=IW.reduce(function(a,w){return a+w[2]},0),c={AK:0,A:0,K:0},r=iuranRows();IW.forEach(function(w){c[w[1]]++});
+ var tl=[['Iuran Air',40000,'var(--c1)'],['Kas RT',10000,'var(--c2)'],['Kas 17’an',10000,'var(--c3)'],['Air + Kas total',60000,'#123d9f']];
+ return ph('Daftar iuran air dan kas warga')+
+ '<div class="head"><div><h1>Iuran warga</h1><p class="sub">Daftar iuran air dan kas warga Perum Griya Mulya</p></div><div class="act"><button class="btn ghost" data-act="print">Cetak</button></div></div>'+
+ '<div class="k4">'+tl.map(function(t){return '<div class="tl" style="--kc:'+t[2]+'"><span class="tn"><i></i>'+t[0]+'</span><b>'+rp(t[1])+'</b><span class="tp">per KK per bulan</span></div>'}).join('')+'</div>'+
+ '<div class="fbar noprint"><input id="iq" type="search" placeholder="Cari nama warga" value="'+esc(QS)+'" aria-label="Cari nama warga"><div class="chips">'+[['all','Semua ('+IW.length+')'],['AK','Air + Kas ('+c.AK+')'],['A','Air ('+c.A+')'],['K','Kas ('+c.K+')']].map(function(f){return '<button class="chip" data-f="'+f[0]+'" aria-pressed="'+(FK===f[0])+'">'+f[1]+'</button>'}).join('')+'</div></div>'+
+ '<div class="panel tw"><table><thead><tr><th>No</th><th>Nama warga</th><th>Ket.</th><th class="n">Tagihan</th></tr></thead><tbody id="ib">'+r.h+'</tbody></table></div><p class="sub noprint" id="ic" style="margin:8px 2px 0">Menampilkan '+r.n+' dari '+IW.length+' warga</p>'+
+ '<div class="note"><span class="ni">i</span><div><p><b>* Catatan:</b> Bp. Maryono dihitung 2x iuran Air (Rp80.000) ditambah 1x iuran Kas RT dan 17’an (Rp20.000).</p><p><b>** Catatan:</b> Bp. Rahmanto iuran Air dihitung Rp20.000 ditambah 1x iuran Kas RT dan 17’an (Rp20.000).</p></div></div>'+
+ '<div class="total"><div><div class="tt1">Total estimasi pemasukan per bulan</div><p>Rekapitulasi iuran seluruh warga ('+IW.length+' KK) Perum Griya Mulya</p></div><div class="pill">'+rp(tot)+'</div></div>'}
 function viewBuku(){
  var U=kas==='a',s=st(kas,ym),run=s.awal,cs=U?6:5,
  rows=S.trx.filter(function(x){return x.kas===kas&&x.tgl.slice(0,7)===ym}).sort(function(a,b){return a.tgl<b.tgl?-1:a.tgl>b.tgl?1:a.id-b.id});
@@ -293,8 +321,8 @@ function viewBuku(){
  (rows.length?rows.map(function(x){run+=x.j==='k'?-x.amt:x.amt;return '<tr><td class="dt">'+x.tgl.slice(8)+'/'+x.tgl.slice(5,7)+'</td><td>'+esc(x.ket)+'</td><td class="n in">'+(x.j==='m'?cur(x.amt):'')+'</td>'+(U?'<td class="n in">'+(x.j==='u'?cur(x.amt):'')+'</td>':'')+'<td class="n out">'+(x.j==='k'?cur(x.amt):'')+'</td><td class="n b">'+cur(run)+'</td></tr>'}).join(''):'<tr><td colspan="'+cs+'" class="empty">Belum ada transaksi di '+bl(ym)+'. Klik “Catat transaksi” untuk menambah.</td></tr>')+
  '<tr class="tt"><td></td><td>Total '+NM[kas]+'</td><td class="n">'+cur(s.mi)+'</td>'+(U?'<td class="n">'+cur(s.ua)+'</td>':'')+'<td class="n">'+cur(s.ko)+'</td><td class="n">'+cur(s.akhir)+'</td></tr></tbody></table></div>'}
 function render(){
- document.getElementById('nav').innerHTML=[['ringkasan','Ringkasan'],['buku','Buku kas']].map(function(t){return '<button role="tab" aria-selected="'+(t[0]===tab)+'" data-tab="'+t[0]+'">'+IC[t[0]]+t[1]+'</button>'}).join('');
- document.getElementById('app').innerHTML=tab==='ringkasan'?viewRingkasan():viewBuku()}
+ document.getElementById('nav').innerHTML=[['ringkasan','Ringkasan'],['buku','Buku kas'],['iuran','Iuran warga']].map(function(t){return '<button role="tab" aria-selected="'+(t[0]===tab)+'" data-tab="'+t[0]+'">'+IC[t[0]]+t[1]+'</button>'}).join('');
+ document.getElementById('app').innerHTML=tab==='ringkasan'?viewRingkasan():tab==='iuran'?viewIuran():viewBuku()}
 function fillJ(){var k=document.getElementById('fk').value;document.getElementById('fj').innerHTML='<option value="m">Pemasukan</option>'+(k==='a'?'<option value="u">Uang Air (tidak dihitung pemasukan)</option>':'')+'<option value="k">Pengeluaran</option>'}
 function openDlg(){var d=document.getElementById('dlg'),td=new Date().toISOString().slice(0,10);if(td.slice(0,7)!==ym)td=ym+'-01';
  d.innerHTML='<h2>Catat transaksi</h2><div class="fg"><label>Kas<select id="fk">'+K.map(function(k){return '<option value="'+k+'"'+(k===kas?' selected':'')+'>'+NM[k]+'</option>'}).join('')+'</select></label><label>Jenis<select id="fj"></select></label><label>Tanggal<input id="ft" type="date" min="2026-07-01" value="'+td+'"></label><label>Jumlah (Rp)<input id="fn" type="number" min="0" step="1000" inputmode="numeric"><small id="fh"></small></label><label class="w">Keterangan<input id="fe" placeholder="Contoh: Iuran Kas Air Bp Budi bulan November 2026"></label></div><div class="da"><button class="btn ghost" data-act="cancel">Batal</button><button class="btn" data-act="save">Simpan transaksi</button></div>';
@@ -319,6 +347,8 @@ document.addEventListener('click',function(e){
 document.addEventListener('change',function(e){if(e.target.id==='mm'){ym=e.target.value;render()}if(e.target.id==='fk')fillJ()});
 document.addEventListener('input',function(e){if(e.target.id==='fn'){var v=+e.target.value;document.getElementById('fh').textContent=v>0?rp(v):''}});
 var lw=window.innerWidth,rt;if(window.addEventListener)window.addEventListener('resize',function(){clearTimeout(rt);rt=setTimeout(function(){if(Math.abs(window.innerWidth-lw)>24){lw=window.innerWidth;render()}},200)});
+document.addEventListener('input',function(e){if(e.target.id==='iq'){QS=e.target.value;var r=iuranRows();document.getElementById('ib').innerHTML=r.h;document.getElementById('ic').textContent='Menampilkan '+r.n+' dari '+IW.length+' warga'}});
+document.addEventListener('click',function(e){var b=e.target.closest('button[data-f]');if(b){FK=b.dataset.f;render()}});
 load();render();
 </script>
 </body>
